@@ -12,5 +12,6 @@ resource "aws_instance" "example" {
 
 resource "aws_eip" "ip" {
     instance = "${aws_instance.example.id}"
+    depends_on = ["aws_instance.example"]
     vpc = true
 }
