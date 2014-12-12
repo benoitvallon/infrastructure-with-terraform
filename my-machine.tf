@@ -4,18 +4,18 @@ provider "aws" {
     region = "${var.region}"
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "my-machine" {
     ami = "ami-f0b11187"
     instance_type = "t2.micro"
-    subnet_id = "subnet-XXXXXXX"
+    subnet_id = "subnet-0b94547c"
 
     provisioner "local-exec" {
-        command = "echo ${aws_instance.example.public_ip} > file.txt"
+        command = "echo ${aws_instance.my-machine.public_ip} > file.txt"
     }
 }
 
 resource "aws_eip" "ip" {
-    instance = "${aws_instance.example.id}"
-    depends_on = ["aws_instance.example"]
+    instance = "${aws_instance.my-machine.id}"
+    depends_on = ["aws_instance.my-machine"]
     vpc = true
 }
