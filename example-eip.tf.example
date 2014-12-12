@@ -8,6 +8,10 @@ resource "aws_instance" "example" {
     ami = "ami-f0b11187"
     instance_type = "t2.micro"
     subnet_id = "subnet-XXXXXXX"
+
+    provisioner "local-exec" {
+        command = "echo ${aws_instance.example.public_ip} > file.txt"
+    }
 }
 
 resource "aws_eip" "ip" {
