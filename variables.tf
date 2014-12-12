@@ -9,3 +9,7 @@ variable "amis" {
         eu-central-1 = "ami-b43503a9"
     }
 }
+
+output "ip" {
+    value = "${aws_eip.ip.public_ip}"
+}
